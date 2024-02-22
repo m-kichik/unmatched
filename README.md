@@ -23,6 +23,7 @@
   `python3 generate_sample.py sets_configs/sets.yaml 2 w`
 
   _"Statistical" policy explanation._
+  
   In this case [information from the UmDb](https://unmatched.cards/results) is used. The first hero (or a pair of heroes in case of 4-players mode)
   is selected randomly from the full list of heroes. The second hero (or a pair, or next two heroes in case of 3-players mode) is also selected randomly
   with respect to some probabilities. These probabilities are computed using winrates of the previously selected hero VS other heroes. Since the goal is to make
