@@ -118,15 +118,20 @@ def get_umdb_sample(num_items, total_threshold=10):
     for i in range(len(start_weights)):
         ids, weights = zip(*[(key, value) for key, value in start_weights[i].items()])
         weights = normalize_weights(weights)
-        new_item = np.random.choice(ids, size=1, replace=False, p=weights)[0]
 
-        for sw in start_weights[i:]:
-            del sw[new_item]
+        ni_size = 2 if num_items == 3 else 1
+        new_items = np.random.choice(ids, size=ni_size, replace=False, p=weights)
 
-        final_pairs.append((names[selected_ids[i]], names[new_item]))
+        for ni in new_items:
+            final_pairs.append((names[selected_ids[i]], names[ni]))
+            for sw in start_weights[i:]:
+                del sw[ni]
 
-    final_pairs = [final_pairs[i][j] for i, j in get_combinations()]
-    return final_pairs
+    if num_items == 3:
+        final_items = [final_pairs[0][0], final_pairs[0][1], final_pairs[1][1]]
+    else:
+        final_items = [final_pairs[i][j] for i, j in get_combinations()]
+    return final_items
 
 
 def get_sample(items: List[tuple], num_items, policy="w"):
