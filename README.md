@@ -1,8 +1,11 @@
 **Installation**:
+
 `git clone https://github.com/m-kichik/unmatched/`
+
 `python3 -m pip install -r requirements.txt`
 
 **Tools**:
+
 - _Generate sample_:
   Simple script for generating 2, 3 or 4 heroes sample and a map. It is started by the command:
 
